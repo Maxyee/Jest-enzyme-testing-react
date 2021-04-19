@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Testing Simple Finance app (Jest & Enzyme)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+At first we have to make a react project. Then we have to develop our simple application using react. Finally, we will test the project with the (Jest and Enzyme library).
 
-## Available Scripts
+## Necessary Library for install (steps below).
 
-In the project directory, you can run:
+1. At first install `enzyme` and `enzyme-adapter-react-17`
 
-### `yarn start`
+### `npm i --save-dev enzyme @wojtekmaj/enzyme-adapter-react-17`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. then install `react-test-renderer`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `npm i react-test-renderer`
 
-### `yarn test`
+3. finally add the dev dependency library `enzyme-to-json`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `npm install --save-dev enzyme-to-json`
 
-### `yarn build`
+4. now we have to open the code and integrate all of library for work
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `npm start`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. from the project `src` directory open the file called `setupTests.js`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```js
 
-### `yarn eject`
+import { configure } from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+configure({ adapter: new Adapter() });
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+6. Now we will do our test on the application components. For now into this finance app
+we will do all the test on `App.test.js` file
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+7. After writing all of the test code we need to run test command for knowing the results.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### `npm run test`
