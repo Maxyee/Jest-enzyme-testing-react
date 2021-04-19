@@ -132,3 +132,6 @@ describe("snapshots", () => {
 
 
 8. Here is the final output for the finance app test result. we can also find the snapshot into the `src/__snapshots__` folder.
+
+![alt text](https://github.com/Maxyee/Jest-enzyme-testing-react/blob/master/react-hook-testing/public/hooktest.png)
+
