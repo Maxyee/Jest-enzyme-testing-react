@@ -3,6 +3,7 @@ import App from './App';
 import AccountBalance from './components/AccountBalance';
 import Notification from './components/Notification';
 import { shallow, mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 
 
 const userBalance = {
@@ -30,4 +31,56 @@ describe("rendering components", () => {
     const label = wrapper.find("#balance-button").text();
     expect(label).toEqual("Send 100$");
   });
-})
+});
+
+
+describe("passing props", () => {
+  const accountWrapper = mount(<AccountBalance accounts={userBalance} />);
+  const notificationWrapper = mount(<Notification balance={userBalance.balance}/>);
+
+  it("accepts user account props", () => {
+    expect(accountWrapper.props().accounts).toEqual(userBalance);
+  });
+
+  it("contains savingBalance value", () => {
+    const value = accountWrapper.find(".savings").text();
+    const expectedValue = userBalance.savingBalance + '$';
+    expect(value).toEqual(expectedValue);
+  });
+
+  it("notification accepts props", () => {
+    expect(notificationWrapper.props().balance).toEqual(userBalance.balance);
+  })
+});
+
+describe("logic", () => {
+  const wrapper = mount(<AccountBalance accounts={userBalance} />);
+  const notificationWrapper = mount(<Notification balance={userBalance.balance} />);
+  wrapper.find("#balance-button").simulate("click");
+  it("button click - update savings", () => {
+    const savingValue = wrapper.find(".savings").text();
+    const expectedValue = userBalance.savingBalance + 100 + '$';
+    expect(savingValue).toEqual(expectedValue);
+  });
+
+  it("button click - update savings", () => {
+    const balanceValue = wrapper.find(".balance").text();
+    const expectedBalanceValue = userBalance.balance - 100 + '$';
+    expect(balanceValue).toEqual(expectedBalanceValue);
+  });
+});
+
+describe("snapshots", () => {
+  it("App snapshots", () => {
+    const tree = shallow(<App />);
+    expect(toJson(tree)).toMatchSnapshot();
+  });
+  it("Accounts snapshots", () => {
+    const accountBalanceTree = shallow(<AccountBalance accounts={userBalance} />);
+    expect(toJson(accountBalanceTree)).toMatchSnapshot();
+  });
+  it("Notification snapshots", () => {
+    const notificationTree = shallow(<Notification balance={userBalance.balance} />);
+    expect(toJson(notificationTree)).toMatchSnapshot();
+  });
+});
