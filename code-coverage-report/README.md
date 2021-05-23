@@ -2,6 +2,19 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Todo Project Which Will Be Tested Code Coverage
+
+At first we need to make our project, then we are going to test this project with jest
+and also we will find the code coverage report
+
+project screenshot look like :
+
+![alt text](https://github.com/Maxyee/Jest-enzyme-testing-react/blob/master/screenshot/todo.png)
+
+# How to install test library for todo project
+
+1.
+
 ## Available Scripts
 
 In the project directory, you can run:
